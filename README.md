@@ -7,8 +7,9 @@
     - The place where I can refresh lost things;
     - One place for workday notes;
 
-## Topics:
+## :memo: Topics:
 
-* [Ansible](ansible/README.md)
+* [`Ansible`](ansible/README.md)
+* [`Linux/Curl`](linux/curl/README.md)
 
 Les't begin... 
