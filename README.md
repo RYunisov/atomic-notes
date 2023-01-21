@@ -5,7 +5,7 @@
 - Starting the repo I following couple ideas:
     - Make habbit to collect every day a new IT knowledges;
     - The place where I can refresh lost things;
-    - One place for workday notes;
+    - One pocket for workday notes;
 
 ## :memo: Topics:
 
