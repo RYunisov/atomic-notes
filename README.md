@@ -11,5 +11,6 @@
 
 * [`Ansible`](ansible/README.md)
 * [`Linux/Curl`](linux/curl/README.md)
+* [`Python`](python/modules/README.md)
 
 Les't begin... 
