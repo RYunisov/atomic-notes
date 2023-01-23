@@ -1,6 +1,6 @@
 # Welcome to atomic-notes
 
-## POV: 
+## :sparkles: POV:
 
 - Starting the repo I following couple ideas:
     - Make habbit to collect every day a new IT knowledges;
@@ -16,4 +16,4 @@
 * [`Linux/LDAPSearch`](linux/ldapsearch/README.md)
 * [`Python`](python/modules/README.md)
 
-Les't begin... 
+Les't begin...
