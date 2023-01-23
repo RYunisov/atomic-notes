@@ -28,3 +28,14 @@ foo_project/
 ```sh
 $ ansible <host_group> -m shell -a 'uptime' -vv
 ```
+
+### Encrypt string by `ansible-vault`
+
+```sh
+$ ansible-vault encrypt_string --name secret_name some_secret
+```
+
+### Decrypt encrypted vars by ansible-vault
+```sh
+$ ansible-vault decrypt <file_encrypted_by_vault>
+```
