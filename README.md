@@ -10,6 +10,7 @@
 ## :memo: Topics:
 
 * [`Ansible`](ansible/README.md)
+* [`Jenkins/Secrets`](jenkins/secrets/README.md)
 * [`Linux/Curl`](linux/curl/README.md)
 * [`Linux/Bash`](linux/bash/README.md)
 * [`Python`](python/modules/README.md)
