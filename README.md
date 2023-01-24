@@ -14,6 +14,7 @@
 * [`Linux/Bash`](linux/bash/README.md)
 * [`Linux/Curl`](linux/curl/README.md)
 * [`Linux/LDAPSearch`](linux/ldapsearch/README.md)
+* [`Linux/SSH`](linux/ssh/README.md)
 * [`Python/Modules`](python/modules/README.md)
 * [`Python/Poetry`](python/poetry/README.md)
 
