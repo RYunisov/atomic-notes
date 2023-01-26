@@ -1,7 +1,13 @@
 # Bash
 
+## Brief
+
+`ulimit`, `bg` and etc aren't utils they are commands from bash :smile:
+
+Just type `man bash` to check others.
+
 ## Precondition
-...
+TBD
 
 ### Fill multilines data into a file without an editor
 
