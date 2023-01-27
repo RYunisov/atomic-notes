@@ -40,3 +40,21 @@ $ for FILE in *; do echo ${FILE} - Foo; done
 ```bash
 $ find / -type f -name "README.*" -print
 ```
+
+### Move job in the background
+
+```bash
+$ sleep infinity &
+```
+
+### Show jobs in background
+
+```bash
+$ jobs
+```
+
+### Join to background
+
+```bash
+$ fg 1
+```
