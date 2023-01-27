@@ -10,6 +10,7 @@
 ## :memo: Topics:
 
 * [`Ansible`](ansible/README.md)
+* [`Ansible/Ansible-vault`](ansible/ansible-vault/README.md)
 * [`Containerization/Docker-engine`](containerization/docker-engine/README.md)
 * [`Hashicorp/Consul-template`](hashicorp/consul-template/README.md)
 * [`Jenkins/Secrets`](jenkins/secrets/README.md)
