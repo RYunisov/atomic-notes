@@ -20,6 +20,14 @@ $ ssh-copyid -l <username> <target_host>
 * Resolve will be running on Load Balancer side;
 * Source host might carreless about `target_host` FQDN.
 
+Scheme:
+
+```mermaid
+flowchart LR
+    A[User] -->|TCP/443| C(LoadBalancer)
+    C -->|TCP/22| D[SSH]
+```
+
 ```bash
 $ ssh -o "ProxyCommand=openssl s_client -quiet -servername %h -connect <loadbalancer_host>:<loadbalancer_port>" <target_host> 
 ```
