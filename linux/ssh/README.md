@@ -14,10 +14,10 @@ $ ssh-keygen -t ed25519
 $ ssh-copyid -l <username> <target_host>
 ```
 
-### Connect to host through load-balancer
+### Connect to host through LoadBalancer
 
-* Load Balancer have to know about HostSNI which passing in request;
-* Resolve will be running on Load Balancer side;
+* LoadBalancer have to know about HostSNI which passing in request;
+* Resolve will be running on LoadBalancer side;
 * Source host might carreless about `target_host` FQDN.
 
 Scheme:
