@@ -6,6 +6,8 @@
 
 ## Tips
 
+Find all files that starting `messages` in name in `/var` directory
+
 ```bash
 $ find /var -type f -name 'messages-*'
 ```
