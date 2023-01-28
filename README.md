@@ -16,6 +16,7 @@
 * [`Jenkins/Secrets`](jenkins/secrets/README.md)
 * [`Linux/Bash`](linux/bash/README.md)
 * [`Linux/Curl`](linux/curl/README.md)
+* [`Linux/Grep`](linux/grep/README.md)
 * [`Linux/LDAPSearch`](linux/ldapsearch/README.md)
 * [`Linux/rdpgw`](linux/rdpgw/README.md)
 * [`Linux/sed`](linux/sed/README.md)
