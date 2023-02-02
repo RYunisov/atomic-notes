@@ -58,3 +58,13 @@ $ jobs
 ```bash
 $ fg 1
 ```
+
+### Strong recommend to use aliases
+
+Aliases are extended function in bash and that can reduce your operations.
+
+```bash
+$ alias tailf='tail -f'
+$ alias ll='ls -la'
+```
+
