@@ -5,7 +5,7 @@
 # Ansible
 
 - [Ansible](ansible/README.md)
-    - [Ansible-vault](ansible/ansible-vault/README.md)
+- [Ansible-vault](ansible/ansible-vault/README.md)
 
 # Containerization
 
