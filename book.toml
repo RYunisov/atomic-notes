@@ -1,0 +1,14 @@
+[book]
+title = "Atomic notes"
+authors = ["Ruslan Yunisov"]
+language = "en"
+multilingual = false
+src = "src"
+
+[preprocessor.emoji]
+renderer = ["html"]
+
+[output.html]
+site-url = "/atomic-notes/"
+git-repository-url = "https://github.com/ryunisov/atomic-notes/tree/main/"
+

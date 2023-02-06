@@ -33,18 +33,13 @@ jobs:
         run: cargo install mdbook
 
       - name: Build docs
-        run: |
-          mdbook init --force --ignore "none" --title "Atomic notes"
-          rm -rf src
-          mv docs src
-          mdbook build
-          ls -la src/
+        run: mdbook build docs
 
       - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
           name: page
-          path: book
+          path: docs/book
           if-no-files-found: error
 
   deploy:
