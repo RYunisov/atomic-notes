@@ -2,6 +2,32 @@
 
 ## Tips
 
+### Static config
+
+Util `ssh` able to using predefined configurations.
+The most popular place to check `~/.ssh/config`, `/etc/ssh/ssh_config`
+
+Example:
+
+```bash
+Host baloo
+   Hostname <hostname>
+   Port <port>
+   User <username>
+   LocalForward 3000 localhost:3000
+   LocalForward 8080 localhost:8080
+   LocalForward 4646 localhost:4646
+   LocalForward 9090 localhost:9090
+   ForwardAgent yes
+
+```
+
+Hostname `baloo` like an alias will using to connect via SSH.
+
+```bash
+$ ssh baloo
+```
+
 ### Generate key
 
 ```bash
@@ -47,3 +73,4 @@ We can make to able reacheble from `source_host` thought ssh util.
 ```bash
 $ ssh -L 127.0.0.1:8080:8080 <target_host>
 ```
+
