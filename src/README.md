@@ -27,6 +27,7 @@
 * [`Linux/Tcpdump`](linux/tcpdump/)
 * [`Python/Modules`](python/modules/)
 * [`Python/Poetry`](python/poetry/)
+* [`Git`](git/)
 
 ## :mailbox: Any advice or questions
 
