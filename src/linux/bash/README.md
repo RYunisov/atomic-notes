@@ -86,3 +86,9 @@ Common using signals:
 $ kill -<signal_id> <pid>
 ```
 
+### Pipe or conveyer
+
+```bash
+# ls /home/*/.ssh/authorized_keys | xargs -I {} bash -c "echo -n {}; cat {}"
+```
+
