@@ -39,3 +39,9 @@ consul_advertise_addr:  "{{ '{{ GetInterfaceIP \\\"eth1\\\" }}' }}"
 # Example 02
 UsernameTemplate: "{{ '{{ username }}' }}"
 ```
+
+### Usefull tips
+```bash
+--diff - for check differens
+--check - just dry-run
+```
