@@ -28,3 +28,14 @@ foo_project/
 ```sh
 $ ansible <host_group> -m shell -a 'uptime' -vv
 ```
+
+### Escape go template `{{` `}}` symbols
+
+```sh
+# Example 01
+consul_bind_addr:  "{{ '{{ GetInterfaceIP \\\"eth0\\\" }}' }}"
+consul_advertise_addr:  "{{ '{{ GetInterfaceIP \\\"eth1\\\" }}' }}"
+
+# Example 02
+UsernameTemplate: "{{ '{{ username }}' }}"
+```
