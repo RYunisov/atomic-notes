@@ -24,6 +24,7 @@
 
 - [bash](linux/bash/README.md)
 - [curl](linux/curl/README.md)
+- [dig](linux/dig/README.md)
 - [find](linux/find/README.md)
 - [grep](linux/grep/README.md)
 - [iptables](linux/iptables/README.md)
