@@ -74,3 +74,15 @@ We can make to able reacheble from `source_host` thought ssh util.
 $ ssh -L 127.0.0.1:8080:8080 <target_host>
 ```
 
+# ssh-agent
+
+The util `ssh-agent` provide to make easy process to forward auth through other host/hosts.
+
+```bash
+$ ssh-add                     # Add key to ssh agent
+$ ssh-add -L                  # Check already added keys
+$ ssh <target_host> -A        # Enable Agent-Forwarding(On target host also have to enabled)
+<target_host> $ ssh-add -L    # Check already added keys on target host after login on target host
+$ env | grep SSH_AUTH_SOCK    # Place where storing ssh-agent sock
+```
+
