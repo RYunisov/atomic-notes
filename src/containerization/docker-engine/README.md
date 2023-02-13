@@ -55,3 +55,15 @@ RUN --mount=type=secret,id=secretfile,dst=/<home_dir>/.ssh/id_rsa \
 ```sh
 $ docker logs <container_name> > <filename_log> 2>&1
 ```
+
+### Check history of image
+
+```sh
+$ docker history <image_id>
+```
+
+### Copy all data from container
+
+```sh
+$ docker export <container_id> > <name_of_tar>
+```
