@@ -67,3 +67,12 @@ $ docker history <image_id>
 ```sh
 $ docker export <container_id> > <name_of_tar>
 ```
+
+### Enable full access from container to GuestOS
+
+> This is UNSECURE
+
+```sh
+$ docker run -ti --privilage <image>
+```
+
