@@ -32,6 +32,7 @@
 - [rdpgw](linux/rdpgw/README.md)
 - [sed](linux/sed/README.md)
 - [ssh](linux/ssh/README.md)
+- [systemd](linux/systemd/README.md)
 - [tcpdump](linux/tcpdump/README.md)
 
 # Python
