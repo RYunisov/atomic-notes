@@ -41,7 +41,6 @@
 - [Modules](python/modules/README.md)
 - [Poetry](python/poetry/README.md)
 
-
 # Version control
 
 - [git](git/README.md)
@@ -49,4 +48,6 @@
 
 # Topics
 
+- [How to check type of linked libs](topics/static-or-dynamic-linked.md)
 - [Jenkins and Hashicorp Vault](topics/jenkins-vault-secrets.md)
+
