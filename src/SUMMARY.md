@@ -18,6 +18,7 @@
 
 # Jenkins
 
+- [Pipeline](jenkins/pipeline/README.md)
 - [Secrets](jenkins/secrets/README.md)
 
 # Linux tools
