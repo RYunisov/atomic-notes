@@ -44,6 +44,7 @@
 # Version control
 
 - [git](git/README.md)
+  - [Publish static page in github](git/topic2/README.md)
   - [How to merge two repos](git/topic1/README.md)
 
 # Topics
