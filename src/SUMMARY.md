@@ -32,6 +32,7 @@
 - [ldapsearch](linux/ldapsearch/README.md)
 - [rdpgw](linux/rdpgw/README.md)
 - [sed](linux/sed/README.md)
+- [ss](linux/ss/README.md)
 - [ssh](linux/ssh/README.md)
 - [systemd](linux/systemd/README.md)
 - [tcpdump](linux/tcpdump/README.md)
