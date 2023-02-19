@@ -6,6 +6,7 @@
 
 - [Ansible](ansible/README.md)
 - [Ansible-vault](ansible/ansible-vault/README.md)
+- [Ansible-playbook](ansible/ansible-playbook/README.md)
 
 # Containerization
 
