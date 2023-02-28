@@ -31,6 +31,7 @@
 - [grep](linux/grep/README.md)
 - [iptables](linux/iptables/README.md)
 - [ldapsearch](linux/ldapsearch/README.md)
+- [nc](linux/nc/README.md)
 - [nsupdate](linux/nsupdate/README.md)
 - [rdpgw](linux/rdpgw/README.md)
 - [sed](linux/sed/README.md)
