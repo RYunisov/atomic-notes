@@ -54,6 +54,7 @@
 
 # Topics
 
+- [Nginx as reverse-proxy for SSH](topics/nginx-as-reverse-proxy-ssh.md)
 - [How to check type of linked libs](topics/static-or-dynamic-linked.md)
 - [Jenkins and Hashicorp Vault](topics/jenkins-vault-secrets.md)
 
