@@ -14,10 +14,10 @@ stream {
 
     server {
 
-        listen 8443 ssl; # managed by Certbot
-        ssl_certificate /etc/letsencrypt/live/gw.digimatics.ru/fullchain.pem; # managed by Certbot
-        ssl_certificate_key /etc/letsencrypt/live/gw.digimatics.ru/privkey.pem; # managed by Certbot
-        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+        listen 8443 ssl;
+        ssl_certificate /etc/letsencrypt/live/ssl/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/ssl/privkey.pem;
+        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
         proxy_pass      $target_backend;
 
