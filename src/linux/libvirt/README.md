@@ -63,3 +63,33 @@ Block device 'vda' is resized
 # qemu-img info /volumes/disk01.qcow2 --force-share
 
 ```
+
+## Troubleshouting
+
+Case 01. In during starting VM in `cockpit-ui` or `Terraform` deploy `Libvirt` return error:
+
+- System information:
+  - Ubuntu 20.04
+  - Apparmor
+  - Libvirt
+
+```bash
+
+libvirtd[18883]: internal error: qemu unexpectedly closed the monitor: 2023-03-27T11:31:54.139065Z qemu-system-x86_64: -blockdev {"driver":"file","filename":"/volumes/disk01.qcow2","node-name":"libvirt-1-storage","auto-read-only":true,"discard":"unmap"}: Could not open '/volumes/disk01.qcow2': Permission denied
+
+```
+
+Just update `Apparmor` template: `/etc/apparmor.d/libvirt/TEMPLATE.qemu`
+
+Example fix:
+
+```bash
+
+#include <tunables/global>
+
+profile LIBVIRT_TEMPLATE flags=(attach_disconnected) {
+  #include <abstractions/libvirt-qemu>
+  "/volumes/{,**}" rwk, # <- Add the line
+}
+
+```
