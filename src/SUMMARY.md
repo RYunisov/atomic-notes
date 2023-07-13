@@ -30,6 +30,7 @@
 - [find](linux/find/README.md)
 - [grep](linux/grep/README.md)
 - [iptables](linux/iptables/README.md)
+- [jq](linux/jq/README.md)
 - [ldapsearch](linux/ldapsearch/README.md)
 - [libvirt](linux/libvirt/README.md)
 - [nc](linux/nc/README.md)
