@@ -35,6 +35,7 @@
 - [libvirt](linux/libvirt/README.md)
 - [nc](linux/nc/README.md)
 - [nsupdate](linux/nsupdate/README.md)
+- [openssl](linux/openssl/README.md)
 - [rdpgw](linux/rdpgw/README.md)
 - [sed](linux/sed/README.md)
 - [ss](linux/ss/README.md)
