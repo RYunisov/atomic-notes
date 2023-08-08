@@ -32,3 +32,10 @@ Python exists a `json` module. Module parses and showes any valide json in reada
 $ curl https://rickandmortyapi.com/api/character/1 -s | python3 -m json.tool
 ```
 
+In case shows only the key as `name`
+
+```bash
+$ curl https://rickandmortyapi.com/api/character/1 -s | \
+  python3 -c "import json,sys;print(json.load(sys.stdin)['name'])"
+```
+
