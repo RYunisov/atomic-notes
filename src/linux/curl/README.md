@@ -7,12 +7,14 @@
 ## Examples:
 
 ### Check TCP port is open on target host:
+
 ```sh
 $ curl telnet://github.com:443 -v
 
 *   Trying 140.82.121.4:443...
 * Connected to google.com (140.82.121.4) port 443
-``` 
+```
+
 > Util `telnet` don't require to installed.
 
 ### Make request with manual DNS resolve
@@ -28,4 +30,11 @@ $ curl -v --resolve github.com:8443:127.0.0.1 https://github.com:8443
 * Closing connection 0
 curl: (7) Failed to connect to github.com port 8443 after 0 ms: Connection refused
 ```
+
 > `Curl` can make to resolve without asking DNS server or `/etc/hosts`
+
+### Just return `HTTP_STATUS`
+
+```sh
+$ curl -s -o /dev/null -I -w "%{http_code}" http://www.example.org/
+```
