@@ -18,3 +18,10 @@ Require `root` permissions to run and assign network interfaces
 ```bash
 # tcpdump -npi any dst port 53
 ```
+
+* Apply several filters as destination port and host
+
+```bash
+#  tcpdump -npi any dst port 22 and host 127.0.0.1
+```
+
