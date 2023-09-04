@@ -61,6 +61,7 @@
 
 # Topics
 
+- [Update size of a block device](topics/update-size-block-device.md)
 - [Build a docker-image by Packer](topics/packer-build-docker.md)
 - [Vault Transit Key](topics/vault-transit-key.md)
 - [Nginx and different interfaces](topics/nginx-output-interfaces.md)
