@@ -68,6 +68,12 @@ $ docker history <image_id>
 $ docker export <container_id> > <name_of_tar>
 ```
 
+### Check runtime metrics
+
+```sh
+$ docker stats
+```
+
 ### Enable full access from container to GuestOS
 
 > This is UNSECURE
