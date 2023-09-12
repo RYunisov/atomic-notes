@@ -2,36 +2,26 @@
 
 ## :sparkles: POV:
 
-- Starting the repo I following couple ideas:
-    - Make habbit to collect every day a new IT knowledges;
-    - The place where I can refresh lost things;
-    - One pocket for workday notes;
+I following couple ideas do starting the repo:
+* Make the habit to collect every day a new IT knowledges;
+* The place where I can refresh lost things;
+* The one pocket for workday notes;
 
 ## :memo: Topics:
 
-* [`Ansible`](ansible/)
-* [`Ansible/Ansible-vault`](ansible/ansible-vault/)
-* [`Containerization/Docker-engine`](containerization/docker-engine/)
-* [`Containerization/Docker-compose`](containerization/docker-compose/)
-* [`Hashicorp/Consul-template`](hashicorp/consul-template/)
-* [`Jenkins/Secrets`](jenkins/secrets/)
-* [`Linux/Bash`](linux/bash/)
-* [`Linux/Curl`](linux/curl/)
-* [`Linux/Find`](linux/find/)
-* [`Linux/Grep`](linux/grep/)
-* [`Linux/iptables`](linux/iptables/)
-* [`Linux/LDAPSearch`](linux/ldapsearch/)
-* [`Linux/rdpgw`](linux/rdpgw/)
-* [`Linux/sed`](linux/sed/)
-* [`Linux/SSH`](linux/ssh/)
-* [`Linux/Tcpdump`](linux/tcpdump/)
-* [`Python/Modules`](python/modules/)
-* [`Python/Poetry`](python/poetry/)
-* [`Git`](git/)
+* [Top 5 rare docker commands](topics/top-5-docker-commands.md)
+* [Grab an one file from a monorepo](topics/grab-a-single-file.md)
+* [Update size of a block device](topics/update-size-block-device.md)
+* [Build a docker-image by Packer](topics/packer-build-docker.md)
+* [Vault Transit Key](topics/vault-transit-key.md)
+* [Nginx and different interfaces](topics/nginx-output-interfaces.md)
+* [Nginx as reverse-proxy for SSH](topics/nginx-as-reverse-proxy-ssh.md)
+* [How to check type of linked libs](topics/static-or-dynamic-linked.md)
+* [Jenkins and Hashicorp Vault](topics/jenkins-vault-secrets.md)
 
 ## :mailbox: Any advice or questions
 
 Feel you free to ask questions or provide an advice.
 
-## Let's begin...
+## Let's roll...
 
