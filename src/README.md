@@ -10,6 +10,7 @@ I following couple ideas do starting the repo:
 
 ## :memo: Topics:
 
+- [Vault and signed keys by Vault](topics/vault-ssh-signed-keys/vault-ssh-signed-keys.md)
 - [The security on Nomad cluster](topics/nomad-consul-vault/full-house.md)
 - [Top 5 rare docker commands](topics/top-5-docker-commands.md)
 - [Grab an one file from a monorepo](topics/grab-a-single-file.md)
