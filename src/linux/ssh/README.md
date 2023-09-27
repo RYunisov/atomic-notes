@@ -74,11 +74,27 @@ We can make to able reacheble from `source_host` thought ssh util.
 $ ssh -L 127.0.0.1:8080:8080 <target_host>
 ```
 
+### How to transfer files through SSH connection
+
+Basically `rsync` or `scp` can transfer data through SSH connection.
+However in case when just pure SSH you also can doing that.
+
+Transfer files from localhost to the remote host
+```bash
+$ tar -czf - <SRC_FOLDER> | ssh <REMOTE_HOST> tar -xzf - -C <DEST_FOLDER>
+```
+
+Transfer data from the remote host on localhost
+```bash
+$ ssh <REMOTE_HOST> tar -czf - <SRC_FOLDER> | tar -xzf - -C <DEST_FOLDER>
+```
+
 # ssh-agent
 
 The util `ssh-agent` provide to make easy process to forward auth through other host/hosts.
 
 ```bash
+$ eval (ssh-add)              # Sometime requires to use `eval` to init ssh-agent
 $ ssh-add                     # Add key to ssh agent
 $ ssh-add -L                  # Check already added keys
 $ ssh <target_host> -A        # Enable Agent-Forwarding(On target host also have to enabled)
