@@ -43,6 +43,7 @@
 - [sshuttle](linux/sshuttle/README.md)
 - [systemd](linux/systemd/README.md)
 - [tcpdump](linux/tcpdump/README.md)
+- [wget](linux/wget/README.md)
 
 # Postgres
 
