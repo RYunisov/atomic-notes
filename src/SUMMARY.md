@@ -20,7 +20,9 @@
 # Jenkins
 
 - [Pipeline](jenkins/pipeline/README.md)
-- [Secrets](jenkins/secrets/README.md)
+- [Groovy.d](jenkins/groovy.d/)
+  - [Get secrets from Credentials Store](jenkins/secrets/README.md)
+  - [Configure Opsgenie plugin](jenkins/groovy.d/opsgenie.md)
 
 # Linux tools
 
