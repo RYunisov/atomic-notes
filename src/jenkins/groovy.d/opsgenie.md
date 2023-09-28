@@ -6,10 +6,10 @@ Example code
 import jenkins.*
 
 def opsgenieParams = [
-	  apiUrl: "https://api.us.opsgenie.com",
-  	apiKey: "credId",
-  	tags: "jenkins-stage",
-  	teams: "DevOps",
+    apiUrl: "https://api.us.opsgenie.com",
+    apiKey: "credId",
+    tags: "jenkins-stage",
+    teams: "DevOps",
 ]
 
 Jenkins jenkins = Jenkins.getInstance()
