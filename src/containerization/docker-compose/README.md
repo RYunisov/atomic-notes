@@ -31,3 +31,23 @@ $ docker-compose up --build -d
 $ docker-compose run <name_of_service>
 ```
 
+### Labels
+
+That an important feature. Because can easy to find required container. Also `traefik` can operate with LABELS on docker-compose
+
+```yaml
+...
+labels:
+- stage=production
+- version=${GIT_SHA}
+- traefik.http.routers.josh-production.rule=Host(`example.com`)
+- traefik.http.routers.josh-production.tls=true
+...
+```
+
+As an example:
+
+```bash
+docker ps --filter label=stage=production --format {{.ID}} --all
+18672fd97e94
+```
