@@ -33,7 +33,8 @@ $ docker-compose run <name_of_service>
 
 ### Labels
 
-That an important feature. Because can easy to find required container. Also `traefik` can operate with LABELS on docker-compose
+That an important feature. Because can easy to find required container. 
+Also `traefik` can operate with LABELS defined on docker-compose file.
 
 ```yaml
 ...
@@ -51,3 +52,46 @@ As an example:
 docker ps --filter label=stage=production --format {{.ID}} --all
 18672fd97e94
 ```
+
+### Command
+
+The various elegant ways to run multilines script
+
+* Use an entrypoint
+
+    ```yaml
+    ...
+    image: alpine:latest
+    entrypoint: ["sh", "-c"]
+    command:
+    - |
+       VAR1=$$(echo 1)
+       echo $${VAR1}
+    ...
+    ```
+
+* Use the pure command
+
+    ```yaml
+    ...
+    image: alpine:latest
+    command: >
+      sh -c "VAR1=$$(echo 1)
+             echo $${VAR1}"
+    ...
+    ```
+
+* Use the pure command
+
+    ```yaml
+    ...
+    image: alpine:latest
+    command:
+    - sh 
+    - -c 
+    - |
+       VAR1=$$(echo 1)
+       echo $${VAR1}
+    ...
+    ```
+
