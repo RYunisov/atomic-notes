@@ -1,4 +1,4 @@
-# Welcome to atomic-notes
+# Welcome to the atomic-notes
 
 ## :sparkles: POV:
 
