@@ -4,9 +4,10 @@
 
 Docker engine is containerization technology.
 
-Uses: 
-* `namespaces`
-* `cgroups`
+Uses:
+
+- `namespaces`
+- `cgroups`
 
 More information in [`Official documentation`](https://docs.docker.com/engine/install/)
 
@@ -27,8 +28,8 @@ RUN apt update \
 
 > :bulb: That secrets will not be store in an image. Secret will not available after build process.
 
-* Make sure env `DOCKER_BUILDKIT` defined.
-* Secret available in the mounted step others steps cannot reach secret.
+- Make sure env `DOCKER_BUILDKIT` defined.
+- Secret available in the mounted step others steps cannot reach secret.
 
 ```bash
 $ export DOCKER_BUILDKIT=1
@@ -82,3 +83,8 @@ $ docker stats
 $ docker run -ti --privilage <image>
 ```
 
+### Copy images between two different registries
+
+```sh
+$ docker save <DOCKER_IMAGE> | gzip | pv | DOCKER_HOST=ssh://<username>@<target_host>:<target_port> docker load
+```
