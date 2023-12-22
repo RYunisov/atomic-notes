@@ -51,6 +51,7 @@
 # Postgres
 
 - [Postgres](postgres/README.md)
+- [Postgres-Replica](postgres/Replication.md)
 
 # Python
 

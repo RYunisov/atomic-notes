@@ -27,3 +27,15 @@ Check tablespaces
 postgres=# \db
 
 ```
+
+# Check roles:
+
+```
+  SELECT * FROM pg_roles;
+```
+
+# Update password on Role:
+
+```
+  ALTER ROLE replica_user ENCRYPTED PASSWORD '<PASSWORD>';
+```
