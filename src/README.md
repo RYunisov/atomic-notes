@@ -2,14 +2,15 @@
 
 ## :sparkles: POV:
 
-I following couple ideas do starting the repo:
+Here are a couple of ideas for starting the repository:
 
-- Make the habit to collect every day a new IT knowledges;
+- Make a habit of acquiring new IT knowledge every day;
 - The place where I can refresh lost things;
 - The one pocket for workday notes;
 
 ## :memo: Topics:
 
+- [Upgrade Ansible-Core](topics/upgrade-ansible.md)
 - [Vault and signed keys by Vault](topics/vault-ssh-signed-keys/vault-ssh-signed-keys.md)
 - [The security on Nomad cluster](topics/nomad-consul-vault/full-house.md)
 - [Top 5 rare docker commands](topics/top-5-docker-commands.md)
@@ -24,6 +25,6 @@ I following couple ideas do starting the repo:
 
 ## :mailbox: Any advice or questions
 
-Feel you free to ask questions or provide an advice.
+Feel free to ask questions or provide advice.
 
 ## Let's roll...
