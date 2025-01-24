@@ -2,11 +2,12 @@
 
 ## :sparkles: POV:
 
-- Starting the repo I following couple ideas:
-    - Make habbit to collect every day a new IT knowledges;
-    - The place where I can refresh lost things;
-    - One pocket for workday notes;
+Here are a couple of ideas for starting the repository:
 
-## Would you like to improve?
+- Make a habit of acquiring new IT knowledge every day;
+- The place where I can refresh lost things;
+- The one pocket for workday notes;
 
-Feel you free, repo is open to new vision...
+## Would you like to improve a project?
+
+Feel free, repo is open to new vision...

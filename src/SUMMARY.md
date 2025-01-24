@@ -65,7 +65,7 @@
   - [How to merge two repos](git/topic1/README.md)
 
 # Topics
-
+- [Upgrade Ansible-Core](topics/upgrade-ansible.md)
 - [Vault and signed keys by Vault](topics/vault-ssh-signed-keys/vault-ssh-signed-keys.md)
 - [The security on Nomad cluster](topics/nomad-consul-vault/full-house.md)
 - [Top 5 rare docker commands](topics/top-5-docker-commands.md)
