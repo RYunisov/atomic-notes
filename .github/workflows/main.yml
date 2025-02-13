@@ -62,10 +62,10 @@ jobs:
           path: .
 
       - name: GitHub Pages configuration
-        uses: actions/configure-pages@v1
+        uses: actions/configure-pages@v4
 
       - name: GitHub Pages upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
         with:
           path: .
 
