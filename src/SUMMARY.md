@@ -65,6 +65,7 @@
   - [How to merge two repos](git/topic1/README.md)
 
 # Topics
+- [Grafana LDAP Team sync](topics/grafana-ldap-team-sync/grafana-ldap-team-sync.md)
 - [Upgrade Ansible-Core](topics/upgrade-ansible.md)
 - [Vault and signed keys by Vault](topics/vault-ssh-signed-keys/vault-ssh-signed-keys.md)
 - [The security on Nomad cluster](topics/nomad-consul-vault/full-house.md)

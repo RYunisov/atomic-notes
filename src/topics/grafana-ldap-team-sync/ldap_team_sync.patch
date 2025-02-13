@@ -1,0 +1,239 @@
+diff --git a/pkg/api/http_server.go b/pkg/api/http_server.go
+index a05f7897f72..75e0b887141 100644
+--- a/pkg/api/http_server.go
++++ b/pkg/api/http_server.go
+@@ -200,6 +200,7 @@ type HTTPServer struct {
+ 	kvStore                      kvstore.KVStore
+ 	pluginsCDNService            *pluginscdn.Service
+ 	managedPluginsService        managedplugins.Manager
++	teamPermissionsService       accesscontrol.TeamPermissionsService
+ 
+ 	userService          user.Service
+ 	tempUserService      tempUser.Service
+@@ -260,7 +261,7 @@ func ProvideHTTPServer(opts ServerOptions, cfg *setting.Cfg, routeRegister routi
+ 	avatarCacheServer *avatar.AvatarCacheServer, preferenceService pref.Service,
+ 	folderPermissionsService accesscontrol.FolderPermissionsService,
+ 	dashboardPermissionsService accesscontrol.DashboardPermissionsService, dashboardVersionService dashver.Service,
+-	starService star.Service, csrfService csrf.Service, managedPlugins managedplugins.Manager,
++	starService star.Service, csrfService csrf.Service, managedPlugins managedplugins.Manager, teamPermissionsService accesscontrol.TeamPermissionsService,
+ 	playlistService playlist.Service, apiKeyService apikey.Service, kvStore kvstore.KVStore,
+ 	secretsMigrator secrets.Migrator, secretsPluginManager plugins.SecretsPluginManager, secretsService secrets.Service,
+ 	secretsPluginMigrator spm.SecretMigrationProvider, secretsStore secretsKV.SecretsKVStore,
+@@ -368,6 +369,7 @@ func ProvideHTTPServer(opts ServerOptions, cfg *setting.Cfg, routeRegister routi
+ 		authnService:                 authnService,
+ 		pluginsCDNService:            pluginsCDNService,
+ 		managedPluginsService:        managedPlugins,
++		teamPermissionsService:       teamPermissionsService,
+ 		starApi:                      starApi,
+ 		promRegister:                 promRegister,
+ 		promGatherer:                 promGatherer,
+diff --git a/pkg/api/login.go b/pkg/api/login.go
+index e4bc1f0854e..391401dbfb5 100644
+--- a/pkg/api/login.go
++++ b/pkg/api/login.go
+@@ -20,6 +20,7 @@ import (
+ 	"github.com/grafana/grafana/pkg/services/authn"
+ 	contextmodel "github.com/grafana/grafana/pkg/services/contexthandler/model"
+ 	"github.com/grafana/grafana/pkg/services/featuremgmt"
++	"github.com/grafana/grafana/pkg/services/ldap"
+ 	loginservice "github.com/grafana/grafana/pkg/services/login"
+ 	pref "github.com/grafana/grafana/pkg/services/preference"
+ 	"github.com/grafana/grafana/pkg/services/secrets"
+@@ -238,6 +239,13 @@ func (hs *HTTPServer) LoginPost(c *contextmodel.ReqContext) response.Response {
+ 		return response.Err(err)
+ 	}
+ 
++	hs.log.Info("LDAP Sync teams")
++	ldapSyncer := ldap.NewLdapGroupSyncer(hs.Cfg, &hs.TeamService, hs.teamPermissionsService, identity, hs.SQLStore)
++	err = ldapSyncer.SyncLdapGroupsToTeams()
++	if err != nil {
++		hs.log.Debug("Error LDAP Sync teams")
++	}
++
+ 	metrics.MApiLoginPost.Inc()
+ 	return authn.HandleLoginResponse(c.Req, c.Resp, hs.Cfg, identity, hs.ValidateRedirectTo, hs.Features)
+ }
+diff --git a/pkg/services/ldap/ldap_teams.go b/pkg/services/ldap/ldap_teams.go
+new file mode 100644
+index 00000000000..4f3e76faed4
+--- /dev/null
++++ b/pkg/services/ldap/ldap_teams.go
+@@ -0,0 +1,147 @@
++package ldap
++
++import (
++	"context"
++	"fmt"
++	"strconv"
++
++	"github.com/grafana/grafana/pkg/infra/db"
++	"github.com/grafana/grafana/pkg/services/accesscontrol"
++	"github.com/grafana/grafana/pkg/services/authn"
++	"github.com/grafana/grafana/pkg/services/team"
++	"github.com/grafana/grafana/pkg/services/team/teamimpl"
++	"github.com/grafana/grafana/pkg/setting"
++)
++
++type LdapGroupSyncer struct {
++	Identity		*authn.Identity
++	TeamService		team.Service
++	Config			*ServerConfig
++	Store 			db.DB
++	TeamPermissionsService       accesscontrol.TeamPermissionsService
++}
++
++func NewLdapGroupSyncer(cfg *setting.Cfg, ts *team.Service, tps accesscontrol.TeamPermissionsService, identity *authn.Identity, db db.DB) *LdapGroupSyncer {
++	config := GetLDAPConfig(cfg)
++	ldapConfig, err := GetConfig(config)
++	if err != nil {
++		fmt.Print("Error getting config")
++	}
++	return &LdapGroupSyncer{
++		Identity: identity,
++		TeamService: *ts,
++		Config: ldapConfig.Servers[0],
++		TeamPermissionsService: tps,
++		Store: db,
++	}
++}
++
++func (s *LdapGroupSyncer) searchTeam(teamName string) *team.SearchTeamQueryResult {
++	queryResult := &team.SearchTeamQueryResult{}
++
++	query := &team.SearchTeamsQuery{
++		OrgID: s.Identity.OrgID,
++		Name: teamName,
++		Page: 1,
++		Limit: 10,
++		SignedInUser: s.Identity.SignedInUser(),
++	}
++
++	res, err := s.TeamService.SearchTeams(context.Background(), query)
++	if err != nil {
++		fmt.Println("ERROR: ", err)
++		return nil
++	}
++	queryResult.Teams = append(queryResult.Teams, res.Teams...)
++	if len(queryResult.Teams) > 0 {
++		return queryResult
++	}
++
++	return nil
++}
++
++func (s *LdapGroupSyncer) SyncLdapGroupsToTeams() error {
++	if len(s.Config.Teams) > 0 {
++		for _, t := range s.Config.Teams {
++			if s.searchTeam(t.TeamName) != nil {
++				fmt.Printf("Team already presented: %+v\r\n", t)
++				break
++			}
++
++			team := &team.CreateTeamCommand{
++				Name: t.TeamName,
++				Email: t.Email,
++				OrgID: t.OrgID,
++			}
++
++			// Create a team based on the config
++			t, err  := s.TeamService.CreateTeam(context.Background(), team.Name, team.Email, team.OrgID)
++			if err != nil {
++				fmt.Printf("Error creating team\r\n")
++				return err
++			}
++			fmt.Printf("Team is created: %+v\r\n", t)
++		}
++	}
++
++	err := s.GetIdentityInfo()
++	if err != nil {
++		fmt.Print("Error getting identity info\r\n")
++	}
++
++	return nil
++}
++
++func (s *LdapGroupSyncer) GetIdentityInfo() error {
++	ctx := context.Background()
++	queryResult := &team.SearchTeamQueryResult{}
++
++	externalUserInfo := s.Identity.ExternalUserInfo()
++
++	// Match user's group and compare with teams in config
++	for _, groupdn := range externalUserInfo.Groups {
++		fmt.Printf("DEBUG: %+v\r\n", groupdn)
++		for _, t := range s.Config.Teams {
++			if t.GroupDN == groupdn {
++				fmt.Printf("DEBUG: Group %s is matched\r\n", groupdn)
++
++				res := s.searchTeam(t.TeamName)
++				queryResult.Teams = append(queryResult.Teams, res.Teams...)
++			}
++		}
++	}
++
++	userID, err := s.Identity.GetInternalID()
++	if err != nil {
++		fmt.Println("ERROR: Cannot get Internal ID by identity", err)
++		return err
++	}
++
++	for _, res := range queryResult.Teams {
++		fmt.Printf("DEBUG: Founded team: %+v\r\n", res)
++		fmt.Printf("DEBUG: Founded user: %+v\r\n", s.Identity)
++
++		// Add user to team
++		err := s.Store.WithDbSession(ctx, func(sess *db.Session) error {
++			return teamimpl.AddOrUpdateTeamMemberHook(sess, userID, s.Identity.OrgID, res.ID, false, team.PermissionTypeAdmin)
++		})
++		if err != nil {
++			fmt.Println("ERROR: ", err)
++			return err
++		}
++		fmt.Printf("DEBUG: User %d is added to team %d\r\n", userID, res.ID)
++
++		teamIDString := strconv.FormatInt(res.ID, 10)
++
++		// Set user permission to team
++		// Otherwise user will not be able to see the team in the UI
++		_, err = s.TeamPermissionsService.SetUserPermission(ctx, s.Identity.OrgID, accesscontrol.User{ID: userID}, teamIDString, "Admin")
++		if err != nil {
++			fmt.Println("ERROR: ", err)
++			return err
++		}
++		fmt.Printf("DEBUG: Used %d is assigned to permission to team %d\r\n", userID, res.ID)
++	}
++
++	return nil
++}
+diff --git a/pkg/services/ldap/settings.go b/pkg/services/ldap/settings.go
+index f3c38d266a7..f0805ad9c56 100644
+--- a/pkg/services/ldap/settings.go
++++ b/pkg/services/ldap/settings.go
+@@ -63,6 +63,7 @@ type ServerConfig struct {
+ 	GroupSearchBaseDNs             []string `toml:"group_search_base_dns" json:"group_search_base_dns"`
+ 
+ 	Groups []*GroupToOrgRole `toml:"group_mappings" json:"group_mappings"`
++	Teams []*TeamBasedOnGroup `toml:"team_mappings" json:"team_mappings"`
+ }
+ 
+ // AttributeMap is a struct representation for LDAP "attributes" setting
+@@ -74,6 +75,18 @@ type AttributeMap struct {
+ 	MemberOf string `toml:"member_of" json:"member_of"`
+ }
+ 
++//GroupToTeam is a struct mapping of LDAP group to
++// config "team_mappings" setting
++type TeamBasedOnGroup struct {
++	GroupDN string `toml:"group_dn" json:"group_dn"`
++	TeamName string `toml:"team" json: "team"`
++	Email    string `toml:"email" json:"email"`
++	OrgID    int64  `toml:"org_id" json:"org_id"`
++
++	// Create if not exists
++	IsExist *bool `toml:"init" json:"init"`
++}
++
+ // GroupToOrgRole is a struct representation of LDAP
+ // config "group_mappings" setting
+ type GroupToOrgRole struct {
