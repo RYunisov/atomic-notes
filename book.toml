@@ -5,7 +5,7 @@ language = "en"
 multilingual = false
 src = "src"
 
-[preprocessor.emoji]
+[preprocessor.emojicodes]
 renderer = ["html"]
 
 [output.html]
