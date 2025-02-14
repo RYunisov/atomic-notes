@@ -5,8 +5,7 @@ However spend some time to investigate opensource repo and the solution was foun
 
 > Note: The patch was tested on 11.5.1 version
 
-[Here](https://github.com/RYunisov/atomic-notes/blob/main/src/topics/grafana-ldap-teams-sync/ldap_team_sync.patch) I would like to share git-patch as draft.
-
+[Here](https://github.com/RYunisov/atomic-notes/blob/main/src/topics/grafana-ldap-team-sync/ldap_team_sync.patch) I would like to share git-patch as draft.
 # How to implement the git-patch
 
 * Clone original version
