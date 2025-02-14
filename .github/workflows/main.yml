@@ -62,7 +62,7 @@ jobs:
           path: .
 
       - name: GitHub Pages configuration
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@master
 
       - name: GitHub Pages upload artifact
         uses: actions/upload-pages-artifact@master
@@ -71,4 +71,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@master
