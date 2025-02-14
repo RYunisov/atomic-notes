@@ -65,7 +65,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: GitHub Pages upload artifact
-        uses: actions/upload-artifact@master
+        uses: actions/upload-pages-artifact@master
         with:
           path: .
 
