@@ -32,6 +32,7 @@ Last step creates a docker image with name as `grafana/grafana-oss:dev`.
 
 * Provide `config.ini` with defined Team based on LDAP Group
 
+```
     [[servers.team_mappings]]
     team = "g_o_admin"
     group_dn  = "CN=G_O_Admin,OU=Groups,DC=domain,DC=local"
@@ -42,6 +43,7 @@ Last step creates a docker image with name as `grafana/grafana-oss:dev`.
     group_dn  = "CN=G_O_Staff,OU=Groups,DC=domain,DC=local"
     email      = "no_reply@domain.local"
     org_id    = 1
+```
  
 * Login with ldap account which has one of provided group
 
