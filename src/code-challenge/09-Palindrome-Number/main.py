@@ -4,6 +4,9 @@
 # https://leetcode.com/problems/palindrome-number/
 #
 
+import unittest
+
+
 class Solution:
     def isPalindome(self, num):
         print(f"Given: {num}")
@@ -11,7 +14,7 @@ class Solution:
             tail_num = str(num)[:round(len(str(num))/2)]
             head_num = str(num)[round(len(str(num))/2):]
         else:
-            tail_num = str(num)[:round(len(str(num))/2)-1]
+            tail_num = str(num)[:-round(len(str(num))/2)]
             head_num = str(num)[round(len(str(num))/2):]
         if num < 0:
             print(f"{num} isn't palindrome")
@@ -20,11 +23,15 @@ class Solution:
             print(f"True: {num}:{head_num}:{tail_num}")
             return True
 
-#num = 1221
-#num = -123
-num = 212
-#num = 3121213
 
-s = Solution()
-s.isPalindome(num)
+class TestSolution(unittest.TestCase):
+    def test_main(self):
+        s = Solution()
+        self.assertEqual(s.isPalindome(1221), True)
+        self.assertEqual(s.isPalindome(-123), False)
+        self.assertEqual(s.isPalindome(212), True)
+        self.assertEqual(s.isPalindome(3121213), True)
 
+
+if __name__ == "__main__":
+    unittest.main()
