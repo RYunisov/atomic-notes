@@ -50,6 +50,10 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(s.main("1337c0d3"), 1337)
         self.assertEqual(s.main("0-1"), 0)
         self.assertEqual(s.main("words and 987"), 0)
+        self.assertEqual(s.main(" -1123u3761867"), -1123)
+        self.assertEqual(s.main("00000-42a1234"), 0)
+        self.assertEqual(s.main("+-2"), 0)
+        self.assertEqual(s.main(" +004500"), 0)
 
 
 if __name__ == "__main__":
