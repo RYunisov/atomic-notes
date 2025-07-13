@@ -37,8 +37,8 @@ class Solution:
 class TestSolution(unittest.TestCase):
     def test_main(self):
         s = Solution()
-        # self.assertEqual(s.main("abc", "pqr"), "apbqcr")
-        # self.assertEqual(s.main("ab", "pqrs"), "apbqrs")
+        self.assertEqual(s.main("abc", "pqr"), "apbqcr")
+        self.assertEqual(s.main("ab", "pqrs"), "apbqrs")
         self.assertEqual(s.main("abcd", "pq"), "apbqcd")
 
 
